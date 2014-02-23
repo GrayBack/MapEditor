@@ -85,6 +85,11 @@ std::set<Toilette*> Etage::getToilettes(){
     return _toilettes;
 }
 
+std::set<EntreeSortie*> Etage::getEntreeSortie(){
+    return _entreesorties;
+}
+
+
 
 /**
  * @brief The destructor

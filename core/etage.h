@@ -68,6 +68,7 @@ public:
     std::set<QRCode*> getQRCodes();
     std::set<Salle*> getSalles();
     std::set<Toilette*> getToilettes();
+    std::set<EntreeSortie*> getEntreeSortie();
 
     /**
      * @brief The destructor
