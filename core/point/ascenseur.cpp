@@ -17,3 +17,21 @@ bool Ascenseur::getEstAccessiblePourLesHandicapes(){
 TypePoint Ascenseur::getTypePoint(){
     return ASCENSEUR;
 }
+
+QString Ascenseur::getTypeAccesQString(){
+    QString res="";
+    switch(_typeAcces){
+        case HANDICAPE:
+            res="HANDICAPE";
+            break;
+        case VALIDE:
+            res="VALIDE";
+            break;
+        case UNIVERSEL:
+            res="UNIVERSEL";
+            break;
+    }
+
+    return res;
+}
+

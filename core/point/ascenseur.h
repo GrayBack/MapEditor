@@ -14,6 +14,7 @@ public:
     TypePoint getTypePoint();
     TypeAcces getTypeAcces();
     void setTypeAcces(TypeAcces acces);
+    QString getTypeAccesQString();
 private:
     TypeAcces _typeAcces;
 };

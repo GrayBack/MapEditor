@@ -77,6 +77,8 @@ public:
     QString getId();
     double getNiveau();
     void setNiveau(double niveau);
+    void setDistanceEntrePointsDeLEchelle(double distance);
+    double getDistanceEntrePointsDeLEchelle ();
 
     /**
      * @brief The destructor

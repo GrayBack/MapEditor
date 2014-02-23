@@ -12,6 +12,7 @@ void EcritureDom::ecrireSalles(std::set<Salle*> salles, QDomElement points){
         salle.setAttribute("y",s->getY());
         salle.setAttribute("type","salle");
         salle.setAttribute("isAccessible",s->getEstAccessiblePourLesHandicapes());
+        salle.setAttribute("name",s->getName());
 
     }
 
@@ -28,7 +29,9 @@ void EcritureDom::ecrireAscenseurs(std::set<Ascenseur*> ascenseurs, QDomElement 
         ascenseur.setAttribute("y",a->getY());
         ascenseur.setAttribute("type","ascenseur");
         ascenseur.setAttribute("isAccessible",a->getEstAccessiblePourLesHandicapes());
-        //type d'acces
+        ascenseur.setAttribute("Acces",a->getTypeAccesQString());
+        ascenseur.setAttribute("name",a->getName());
+
     }
 
 }
@@ -43,32 +46,37 @@ void EcritureDom::ecrireCouloirs(std::set<Couloir*> couloirs, QDomElement points
         couloir.setAttribute("y",c->getY());
         couloir.setAttribute("type","couloir");
         couloir.setAttribute("isAccessible",c->getEstAccessiblePourLesHandicapes());
+        couloir.setAttribute("name",c->getName());
+
     }
 }
 
 void EcritureDom::ecrireEscaliers(std::set<Escalier*> escaliers, QDomElement points){
     for (std::set<Escalier*>::iterator it=escaliers.begin(); it!=escaliers.end(); ++it){
-            Escalier* escaliers = *it;
+            Escalier* e = *it;
             QDomElement escalier = doc.createElement("point");
             points.appendChild(escalier);
-            escalier.setAttribute("id",escaliers->getId());
-            escalier.setAttribute("x",escaliers->getX());
-            escalier.setAttribute("y",escaliers->getY());
+            escalier.setAttribute("id",e->getId());
+            escalier.setAttribute("x",e->getX());
+            escalier.setAttribute("y",e->getY());
             escalier.setAttribute("type","escalier");
-            escalier.setAttribute("isAccessible",escaliers->getEstAccessiblePourLesHandicapes());
+            escalier.setAttribute("isAccessible",e->getEstAccessiblePourLesHandicapes());
+            escalier.setAttribute("name",e->getName());
+
         }
 }
 
 void EcritureDom::ecrirePortes(std::set<Porte*> portes, QDomElement points){
     for (std::set<Porte*>::iterator it=portes.begin(); it!=portes.end(); ++it){
-                Porte* portes = *it;
+                Porte* p = *it;
                 QDomElement porte = doc.createElement("point");
                 points.appendChild(porte);
-                porte.setAttribute("id",portes->getId());
-                porte.setAttribute("x",portes->getX());
-                porte.setAttribute("y",portes->getY());
+                porte.setAttribute("id",p->getId());
+                porte.setAttribute("x",p->getX());
+                porte.setAttribute("y",p->getY());
                 porte.setAttribute("type","porte");
-                porte.setAttribute("isAccessible",portes->getEstAccessiblePourLesHandicapes());
+                porte.setAttribute("isAccessible",p->getEstAccessiblePourLesHandicapes());
+                porte.setAttribute("name",p->getName());
             }
 }
 
@@ -97,6 +105,8 @@ void EcritureDom::ecrireToilettes(std::set<Toilette*> toilettes, QDomElement poi
                 toilette.setAttribute("type","toilette");
                 toilette.setAttribute("isAccessible",t->getEstAccessiblePourLesHandicapes());
                 toilette.setAttribute("genre",t->getGenreQString());
+                toilette.setAttribute("name",t->getName());
+
             }
 }
 
@@ -109,6 +119,7 @@ void EcritureDom::ecrireEntreeSorties(std::set<EntreeSortie*> entreeSorties, QDo
                 entreeSortie.setAttribute("x",es->getX());
                 entreeSortie.setAttribute("y",es->getY());
                 entreeSortie.setAttribute("type","E/S");
+                entreeSortie.setAttribute("name",es->getName());
             }
 }
 
@@ -123,82 +134,90 @@ void EcritureDom::ecrireLiens(std::set<Lien*> liens, QDomElement liensElem){
     }
 
 
-
-
-
-
-EcritureDom::EcritureDom(Etage* etageT)
+EcritureDom::EcritureDom(Projet* proj)
 {
-    _etage=etageT;
 
 
-    QString nomProjet="ProjetIHM";
     projet = doc.createElement("projet"); // création de la balise "projet"
-    projet.setAttribute("name", nomProjet);
+    projet.setAttribute("name", proj->getName());
     doc.appendChild(projet); // filiation de la balise "projet"
-    file.setFileName(nomProjet.append(".xml"));
+    file.setFileName(proj->getName().append(".xml"));
     if (!file.open(QIODevice::WriteOnly)) // ouverture du fichier de sauvegarde
     return; // en écriture
     out.setDevice(&file); // association du flux au fichier
 
-    // cr��ation de la balise "batiment"
-    QDomElement batiment = doc.createElement("batiment");
-    projet.appendChild(batiment); // filiation de la balise "batiment"
-    batiment.setAttribute("name","nBat"); // cr��ation de l'attribut "name"
-    batiment.setAttribute("id","idBat");
-    // cr��ation de la balise "etage"
-    QDomElement etage = doc.createElement("etage");
-    // filiation de la balise "etage", qui appartient �� un batiment
-    etage.setAttribute("id",_etage->getId());
-    etage.setAttribute("niveau", _etage->getNiveau());
-    etage.setAttribute("name",_etage->getName());
-    batiment.appendChild(etage);
-    // cr��ation de la balise "echelle"
-    QDomElement echelle = doc.createElement("echelle");
-    etage.appendChild(echelle); // filiation de la balise "echelle"
-    QDomElement pointDebut = doc.createElement("point");
-    echelle.appendChild(pointDebut);
-    pointDebut.setAttribute("x",_etage->getDebutEchelle()->getX());
-    pointDebut.setAttribute("y",_etage->getDebutEchelle()->getY());
-    // cr��ation de la balise "image"
-    QDomElement image = doc.createElement("image");
-    image.setAttribute("path", "pathImage");
-    etage.appendChild(image); // filiation de la balise "echelle"
+    //foreach batiment
+    std::vector<Batiment*> batiments = proj->getBatiments();
+
+    for(int j=0; j<batiments.size();j++){
+        Batiment* bat = batiments[j];
+
+        // création de la balise "batiment"
+        QDomElement batiment = doc.createElement("batiment");
+        projet.appendChild(batiment); // filiation de la balise "batiment"
+        batiment.setAttribute("name",bat->getName()); // création de l'attribut "name"
+        batiment.setAttribute("id",bat->getId());
+
+        //foreach etage
+        std::vector<Etage*> etages = bat->getEtages();
+        for(int i=0;i<etages.size();i++){
+            Etage* e= etages[i];
+            // création de la balise "etage"
+            QDomElement etage = doc.createElement("etage");
+            // filiation de la balise "etage", qui appartient à un batiment
+            etage.setAttribute("id",e->getId());
+            etage.setAttribute("niveau", e->getNiveau());
+            etage.setAttribute("name",e->getName());
+            batiment.appendChild(etage);
+            // création de la balise "echelle"
+            QDomElement echelle = doc.createElement("echelle");
+            etage.appendChild(echelle); // filiation de la balise "echelle"
+            echelle.setAttribute("unit","meter");
+            echelle.setAttribute("value",e->getDistanceEntrePointsDeLEchelle());
+            QDomElement pointDebut = doc.createElement("point");
+            echelle.appendChild(pointDebut);
+            pointDebut.setAttribute("x",e->getDebutEchelle()->getX());
+            pointDebut.setAttribute("y",e->getDebutEchelle()->getY());
+            QDomElement pointFin = doc.createElement("point");
+            echelle.appendChild(pointFin);
+            pointFin.setAttribute("x",e->getFinEchelle()->getX());
+            pointFin.setAttribute("y",e->getFinEchelle()->getY());
+            // création de la balise "image"
+            QDomElement image = doc.createElement("image");
+            image.setAttribute("path", "pathImage");
+            etage.appendChild(image); // filiation de la balise "echelle"
+            // création de la balise "QrCode"
+            QDomElement qrcodes = doc.createElement("qrcodes");
+            etage.appendChild(qrcodes); // filiation de la balise "qrcode"
+            this->ecrireQRCodes(e->getQRCodes(),qrcodes);
+            // création de la balise "points"
+            QDomElement points = doc.createElement("points");
+            etage.appendChild(points); // filiation de la balise "points"
+
+            this->ecrireAscenseurs(e->getAscenseurs(), points);
+            this->ecrireSalles(e->getSalles(), points);
+            this->ecrireCouloirs(e->getCouloirs(), points);
+            this->ecrireEscaliers(e->getEscaliers(), points);
+            this->ecrirePortes(e->getPortes(), points);
+            this->ecrireToilettes(e->getToilettes(), points);
 
 
+            // création de balise "arcs"
+            QDomElement arcs = doc.createElement("arcs");
+            etage.appendChild(arcs); // filiation de la balise "echelle"
+            this->ecrireLiens(e->getLiens(), arcs);
 
-
-
-
-    // cr��ation de la balise "QrCode"
-    QDomElement qrcodes = doc.createElement("qrcodes");
-    etage.appendChild(qrcodes); // filiation de la balise "qrcode"
-    this->ecrireQRCodes(_etage->getQRCodes(),qrcodes);
-    // cr��ation de la balise "points"
-    QDomElement points = doc.createElement("points");
-    etage.appendChild(points); // filiation de la balise "points"
-
-    this->ecrireAscenseurs(_etage->getAscenseurs(), points);
-    this->ecrireSalles(_etage->getSalles(), points);
-    this->ecrireCouloirs(_etage->getCouloirs(), points);
-    this->ecrireEscaliers(_etage->getEscaliers(), points);
-    this->ecrirePortes(_etage->getPortes(), points);
-    this->ecrireToilettes(_etage->getToilettes(), points);
-
-
-    // cr��ation de balise "arcs"
-    QDomElement arcs = doc.createElement("arcs");
-    etage.appendChild(arcs); // filiation de la balise "echelle"
-    this->ecrireLiens(_etage->getLiens(), arcs);
+        }
+    }
 
 }
 
 EcritureDom::~EcritureDom()
 {
-    // insertion en d��but de document de <?xml version="1.0" ?>
+    // insertion en début de document de <?xml version="1.0" ?>
     QDomNode noeud = doc.createProcessingInstruction("xml","version=\"1.0\"");
     doc.insertBefore(noeud,doc.firstChild());
-    // sauvegarde dans le flux (deux espaces de d��calage dans l'arborescence)
+    // sauvegarde dans le flux (deux espaces de décalage dans l'arborescence)
     doc.save(out,2);
     file.close();
 }

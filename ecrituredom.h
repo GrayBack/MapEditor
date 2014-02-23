@@ -5,12 +5,13 @@
 #include <QDomDocument>
 #include <QFile>
 #include <QTextStream>
-#include"etage.h"
+#include"projet.h"
+
 class EcritureDom : public QObject
 {
     Q_OBJECT
 public:
-    EcritureDom(Etage* etage);
+    EcritureDom(Projet* proj);
     void ecrireSalles(std::set<Salle*> salles, QDomElement points);
     void ecrireAscenseurs(std::set<Ascenseur*> ascenseurs, QDomElement points);
     void ecrireCouloirs(std::set<Couloir*> couloirs, QDomElement points);
@@ -28,7 +29,6 @@ private :
     QDomElement projet;
     QFile file;
     QTextStream out;
-    Etage* _etage;
 };
 
 #endif // ECRITUREDOM_H

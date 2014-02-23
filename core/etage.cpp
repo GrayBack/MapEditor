@@ -125,6 +125,15 @@ std::set<Lien*> Etage::getLiens(){
 }
 
 
+void Etage::setDistanceEntrePointsDeLEchelle(double distance){
+    _distanceEntrePointsDeLEchelle=distance;
+}
+
+double Etage::getDistanceEntrePointsDeLEchelle (){
+    return _distanceEntrePointsDeLEchelle;
+}
+
+
 
 /**
  * @brief The destructor
