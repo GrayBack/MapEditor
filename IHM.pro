@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     core/point/qrcode.cpp \
     ecrituredom.cpp \
     core/point/entreesortie.cpp \
-    liaison.cpp
+    liaison.cpp \
+    fenliaison.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -62,12 +63,17 @@ HEADERS  += mainwindow.h \
     core/point/qrcode.h \
     ecrituredom.h \
     core/point/entreesortie.h \
-    liaison.h
+    liaison.h \
+    fenliaison.h
 
 
 FORMS    += \
-    mainwindow.ui
+    mainwindow.ui \
+    fenliaison.ui
 
 OTHER_FILES += \
     ../Bureau/etage1.png \
     ../Bureau/mapcreator.png
+
+RESOURCES += \
+    Images/images.qrc

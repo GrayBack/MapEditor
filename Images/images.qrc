@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assenceur.png</file>
+        <file>couloir.png</file>
+        <file>cursor.jpg</file>
+        <file>echelle.jpg</file>
+        <file>entrée_sortie.jpg</file>
+        <file>escalier.jpg</file>
+        <file>escalier.png</file>
+        <file>etage1.png</file>
+        <file>liaison.jpeg</file>
+        <file>mapcreator.png</file>
+        <file>porte.png</file>
+        <file>porte1.png</file>
+        <file>qrcode.jpeg</file>
+        <file>salle.jpg</file>
+        <file>wc.jpg</file>
+    </qresource>
+</RCC>

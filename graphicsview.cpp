@@ -47,12 +47,16 @@ void GraphicsView::mousePressEvent(QMouseEvent* event){
     int posY= this->mapToScene(event->pos()).ry();
     posCursor->setY(this->mapToScene(event->pos()).ry());
 
-    if(event->button() == Qt::RightButton){
+    /*if(event->button() == Qt::RightButton){
+        if(scene()->itemAt(posX,posY)->isSelected()){
+            qDebug() << "Selected" << posY;
+        }
+    }*/
+    if(_typePoint == SELECTION){
         if(scene()->itemAt(posX,posY)->isSelected()){
             qDebug() << "Selected" << posY;
         }
     }
-    if(_typePoint == SELECTION){}
 
     if(event->button() == Qt::LeftButton){
 
@@ -79,7 +83,7 @@ void GraphicsView::mousePressEvent(QMouseEvent* event){
         case TOILETTE :
         {
             p->setRect(posCursor->getX()-10, posCursor->getY()-10, 20, 20);
-            p->setBrush(QColor(240,255,255));
+            p->setBrush(QColor(240,200,230));
             p->setPen(Qt::NoPen);
 
             scene()->addItem(p);
@@ -182,22 +186,18 @@ void GraphicsView::mousePressEvent(QMouseEvent* event){
             qDebug() << "TestESY !" << posCursor->getY();
             break;
         }
-        /*case LIAISON :
+        case LIAISON :
         {
-
-          p->setRect(posCursor->getX()-10, posCursor->getY()-10, 20, 20);
-            p->setBrush(QColor(0,0,0));
-            p->setPen(Qt::NoPen);
-            scene()->addItem(p);
-
-            Lien* es = new Lien(QString::number(this->idComp),posX, posY,"");
+            /*Lien* es = new Lien();
             _etage->ajouterLien(es);
             idComp++;
 
             qDebug() << "TestLienX !" << posCursor->getX();
             qDebug() << "TestLienY !" << posCursor->getY();
-            break;
-                    }*/
+            break;*/
+          }
+            lastX = posCursor->getX();
+            lastY = posCursor->getY();
 
         default :
             break;
@@ -205,8 +205,9 @@ void GraphicsView::mousePressEvent(QMouseEvent* event){
     }
 }
 
-void GraphicsView::mouseMoveEvent(QMouseEvent *event){
-    QGraphicsView::mouseMoveEvent(event);
+
+void GraphicsView::mouseMoveEvent(QMouseEvent *event){}
+/*    QGraphicsView::mouseMoveEvent(event);
 
     this->correctX = mapToScene(event->pos()).rx();
     this->correctY = mapToScene(event->pos()).ry();
@@ -255,7 +256,7 @@ void GraphicsView::mouseMoveEvent(QMouseEvent *event){
     }
 
 }
-
+*/
 void GraphicsView::keyPressEvent(QKeyEvent *event){}
 
 

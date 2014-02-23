@@ -200,6 +200,7 @@ EcritureDom::EcritureDom(Projet* proj)
             this->ecrireEscaliers(e->getEscaliers(), points);
             this->ecrirePortes(e->getPortes(), points);
             this->ecrireToilettes(e->getToilettes(), points);
+            this->ecrireEntreeSorties(e->getEntreeSortie(),points);
 
 
             // création de balise "arcs"

@@ -7,6 +7,84 @@
 #include "graphicsview.h"
 #include "salle.h"
 #include "etage.h"
+#include "fenliaison.h"
+#include "projet.h"
+#include "ecrituredom.h"
+
+// Gère l'affichage des vignettes lors de la sélections des boutons
+// Permet d'afficher un seul type de vignette
+
+void MainWindow::affichageVignette(TypePoint fen){
+    ui->fenetreAscenceur->hide();
+    ui->fenetreCouloir->hide();
+    ui->fenetreCreLiaison->hide();
+    ui->fenetreDefEchelle->hide();
+    ui->fenetreEntreeSortie->hide();
+    ui->fenetreEscalier->hide();
+    ui->fenetrePorte->hide();
+    ui->fenetreQrCode->hide();
+    ui->fenetreSalle->hide();
+    ui->fenetreToilette->hide();
+
+
+    switch (fen) {
+
+
+    case ASCENSEUR :
+    {
+        ui->fenetreAscenceur->show();
+        break;
+    }
+    case COULOIR:
+    {
+        ui->fenetreCouloir->show();
+        break;
+    }
+    case LIAISON:
+    {
+        ui->fenetreCreLiaison->show();
+        break;
+    }
+    case ECHELLE:
+    {
+       ui->fenetreDefEchelle->show();
+        break;
+    }
+    case ENTREESORTIE :
+    {
+        ui->fenetreEntreeSortie->show();
+        break;
+    }
+    case ESCALIER:
+    {
+        ui->fenetreEscalier->show();
+        break;
+    }
+    case PORTE :
+    {
+        ui->fenetrePorte->show();
+        break;
+    }
+    case QRCODE :
+    {
+        ui->fenetreQrCode->show();
+        break;
+    }
+    case SALLE :
+    {
+        ui->fenetreSalle->show();
+        break;
+    }
+    case TOILETTE:
+    {
+        ui->fenetreToilette->show();
+        break;
+    }
+    default :
+        break;
+    }
+
+}
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,6 +97,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuFile->addAction("Charger Image",this,SLOT(charger()));
     ui->menuFile->addAction("Enregistrer",this,SLOT(enregistrer()));
     ui->menuFile->addAction("Extraire",this,SLOT(extraire()));
+
+    //Cache les fenètres de selections
+    ui->fenetreAscenceur->hide();
+    ui->fenetreCouloir->hide();
+    ui->fenetreCreLiaison->hide();
+    ui->fenetreDefEchelle->hide();
+    ui->fenetreEntreeSortie->hide();
+    ui->fenetreEscalier->hide();
+    ui->fenetrePorte->hide();
+    ui->fenetreQrCode->hide();
+    ui->fenetreSalle->hide();
+    ui->fenetreToilette->hide();
+
 
     // Création du groupe qui permet de rendre active une seule des actions (un seul bouton enfoncé)
     QActionGroup* group = new QActionGroup(this);
@@ -33,6 +124,7 @@ MainWindow::MainWindow(QWidget *parent) :
     group->addAction(ui->actionQr_Code);
     group->addAction(ui->actionSalle);
     group->addAction(ui->actionS_lection);
+    group->addAction(ui->actionWC);
 
     // Rend les boutons enfonçables( un click -> enfoncé, autres click -> désenfoncé)
     ui->actionAssenceur->setCheckable(true);
@@ -45,6 +137,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionQr_Code->setCheckable(true);
     ui->actionSalle->setCheckable(true);
     ui->actionS_lection->setCheckable(true);
+    ui->actionWC->setCheckable(true);
 
     //Connection des boutons à leurs action
     connect(ui->actionD_finir_chelle, SIGNAL(triggered()),this,SLOT(definirEchelle()));
@@ -57,49 +150,68 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionLiaison, SIGNAL(triggered()),this,SLOT(definirLiaison()));
     connect(ui->actionQr_Code, SIGNAL(triggered()),this,SLOT(definirPosQrcode()));
     connect(ui->actionS_lection, SIGNAL(triggered()),this,SLOT(definirSelection()));
-}
+    connect(ui->actionWC, SIGNAL(triggered()),this,SLOT(definirWc()));
+ }
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
 void MainWindow::definirEchelle(){
+    ui->graphicsView->setTypePoint(ECHELLE);
+    affichageVignette(ECHELLE);
+    ui->fenetreDefEchelle->show();
 }
+
 void MainWindow::definirEntreeSortie()
 {
     ui->graphicsView->setTypePoint(ENTREESORTIE);
+    affichageVignette(ENTREESORTIE);
 }
 
 void MainWindow::definirEscalier(){
     ui->graphicsView->setTypePoint(ESCALIER);
+    affichageVignette(ESCALIER);
 }
 
 void MainWindow::definirAssenceur(){
     ui->graphicsView->setTypePoint(ASCENSEUR);
+    affichageVignette(ASCENSEUR);
 }
 
 void MainWindow::definirCouloir(){
     ui->graphicsView->setTypePoint(COULOIR);
+    affichageVignette(COULOIR);
 }
 
 void MainWindow::definirSalle(){
     ui->graphicsView->setTypePoint(SALLE);
+    affichageVignette(SALLE);
 }
 
 void MainWindow::definirPorte(){
     ui->graphicsView->setTypePoint(PORTE);
+    affichageVignette(PORTE);
 }
 
 void MainWindow::definirLiaison(){
     ui->graphicsView->setTypePoint(LIAISON);
+    affichageVignette(LIAISON);
 }
 
 void MainWindow::definirPosQrcode(){
     ui->graphicsView->setTypePoint(QRCODE);
+    affichageVignette(QRCODE);
 }
 
 void MainWindow::definirSelection(){
     ui->graphicsView->setTypePoint(SELECTION);
+    affichageVignette(SELECTION);
+}
+
+void MainWindow::definirWc(){
+    ui->graphicsView->setTypePoint(TOILETTE);
+    affichageVignette(TOILETTE);
 }
 
 void MainWindow::enregistrer(){}
@@ -130,4 +242,14 @@ void MainWindow::charger(){
 
     qDebug() << "Etage" << imageNom;
 }
-void MainWindow::extraire(){}
+void MainWindow::extraire(){
+    Projet* p =new Projet("UFR SCiences et Techniques");
+    Batiment* b = new Batiment("Bat15", "CIE");
+
+    ui->graphicsView->_etage->setDebutEchelle(new Point("23",0,0));
+    ui->graphicsView->_etage->setFinEchelle(new Point("24",0,22));
+    ui->graphicsView->_etage->setDistanceEntrePointsDeLEchelle(2.2);
+    b->ajouterEtage(ui->graphicsView->_etage);
+    p->ajouterBatiment(b);
+    EcritureDom ed(p);
+}

@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "type_point.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -13,6 +14,7 @@ class MainWindow : public QMainWindow
     
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void affichageVignette(TypePoint fen);
     ~MainWindow();
     
 public slots :
@@ -26,6 +28,7 @@ public slots :
     void definirLiaison();
     void definirPosQrcode();
     void definirSelection();
+    void definirWc();
 
     void enregistrer();
     void charger();
