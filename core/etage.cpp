@@ -6,6 +6,8 @@ Etage::Etage(QString name, QString imagePath)
 {
     _name=name;
     _imagePath=imagePath;
+    _id="00";
+    _niveau=0.0;
 }
 
 void Etage::ajouterAscenseur(Ascenseur* a){
@@ -87,6 +89,39 @@ std::set<Toilette*> Etage::getToilettes(){
 
 std::set<EntreeSortie*> Etage::getEntreeSortie(){
     return _entreesorties;
+}
+
+QString Etage::getName(){
+    return _name;
+}
+
+
+void Etage::setName(QString name){
+    _name=name;
+}
+
+QString Etage::getId(){
+    return _id;
+}
+
+double Etage::getNiveau(){
+    return _niveau;
+}
+
+void Etage::setNiveau(double niveau){
+    _niveau =niveau;
+}
+
+Point* Etage::getDebutEchelle(){
+    return _debutEchelle;
+}
+
+Point* Etage::getFinEchelle(){
+    return _finEchelle;
+}
+
+std::set<Lien*> Etage::getLiens(){
+    return _liens;
 }
 
 

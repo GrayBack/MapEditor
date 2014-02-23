@@ -8,3 +8,7 @@ QRCode::QRCode(QString id, double x, double y, QString name, QString texte):Name
 TypePoint QRCode::getTypePoint(){
     return QRCODE;
 }
+
+QString QRCode::getText(){
+    return _texte;
+}

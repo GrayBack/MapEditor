@@ -11,14 +11,15 @@ class EcritureDom : public QObject
     Q_OBJECT
 public:
     EcritureDom(Etage* etage);
-    void ecrireSalles(std::set<Salle*> salles, QDomElement etage);
-    void ecrireAscenseurs(std::set<Ascenseur*> ascenseurs, QDomElement etage);
-    void ecrireCouloirs(std::set<Couloir*> couloirs, QDomElement etage);
-    void ecrireEscaliers(std::set<Escalier*> escaliers, QDomElement etage);
-    void ecrirePortes(std::set<Porte*> portes, QDomElement etage);
-    void ecrireQRCodes(std::set<QRCode*> qrcodes, QDomElement etage);
-    void ecrireToilettes(std::set<Toilette*> toilettes, QDomElement etage);
-    //void ecrireQRCodes(std::set<Ascenseur*> ascenseur, QDomElement etage);
+    void ecrireSalles(std::set<Salle*> salles, QDomElement points);
+    void ecrireAscenseurs(std::set<Ascenseur*> ascenseurs, QDomElement points);
+    void ecrireCouloirs(std::set<Couloir*> couloirs, QDomElement points);
+    void ecrireEscaliers(std::set<Escalier*> escaliers, QDomElement points);
+    void ecrirePortes(std::set<Porte*> portes, QDomElement points);
+    void ecrireQRCodes(std::set<QRCode*> qrcodes, QDomElement qrcodesElem);
+    void ecrireToilettes(std::set<Toilette*> toilettes, QDomElement points);
+    void ecrireEntreeSorties(std::set<EntreeSortie*> entreeSorties, QDomElement points);
+    void ecrireLiens(std::set<Lien*> liens, QDomElement liensElem);
 
 
     ~EcritureDom();

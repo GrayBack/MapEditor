@@ -19,3 +19,19 @@ bool Toilette::getEstAccessiblePourLesHandicapes(){
 TypePoint Toilette::getTypePoint(){
     return TOILETTE;
 }
+
+QString Toilette::getGenreQString(){
+    QString res="";
+    switch(_genre){
+    case HOMME:
+        res="HOMME";
+        break;
+    case FEMME:
+        res="FEMME";
+        break;
+    case MIXTE:
+        res="MIXTE";
+        break;
+    }
+    return res;
+}

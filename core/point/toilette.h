@@ -12,6 +12,7 @@ public:
     Toilette(QString id, double x, double y,QString name, bool estAccessiblePourLesHandicapes, Genre genre);
     Toilette(QString id, double x, double y,QString name);
     Genre getGenre();
+    QString getGenreQString();
     void setGenre(Genre g);
     bool getEstAccessiblePourLesHandicapes();
     TypePoint getTypePoint();

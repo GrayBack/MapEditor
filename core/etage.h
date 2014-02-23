@@ -25,11 +25,10 @@ class Etage
     std::set<Salle*> _salles;
     std::set<Toilette*> _toilettes;
     std::set<EntreeSortie*> _entreesorties;
-
-    //liste des points E/S
-
     std::set<Lien*> _liens;
     QString _name;
+    QString _id;
+    double _niveau;
     QString _imagePath;
     Point* _debutEchelle;
     Point* _finEchelle;
@@ -59,7 +58,9 @@ public:
     //void supprimer point -> supprimer liens correspondants
     //setUniteEchelle
     void setDebutEchelle(Point* p);
+    Point* getDebutEchelle();
     void setFinEchelle(Point* p);
+    Point* getFinEchelle();
 
     std::set<Ascenseur*> getAscenseurs();
     std::set<Couloir*>getCouloirs();
@@ -69,6 +70,13 @@ public:
     std::set<Salle*> getSalles();
     std::set<Toilette*> getToilettes();
     std::set<EntreeSortie*> getEntreeSortie();
+    std::set<Lien*> getLiens();
+
+    QString getName();
+    void setName(QString name);
+    QString getId();
+    double getNiveau();
+    void setNiveau(double niveau);
 
     /**
      * @brief The destructor
