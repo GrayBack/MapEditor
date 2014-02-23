@@ -127,7 +127,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Ascenceur</string>
+          <string>Ascenseur</string>
          </property>
         </widget>
        </item>
@@ -711,7 +711,7 @@
      <normaloff>:/assenceur.png</normaloff>:/assenceur.png</iconset>
    </property>
    <property name="text">
-    <string>Assenceur</string>
+    <string>Ascenseur</string>
    </property>
    <property name="toolTip">
     <string>assenceur</string>
