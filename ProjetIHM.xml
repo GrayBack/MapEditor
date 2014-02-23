@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<projet name="ProjetIHM">
+  <batiment id="idBat" name="nBat">
+    <etage id="idEtage" name="nEt" niveau="nivEt">
+      <echelle/>
+      <image path="pathImage"/>
+      <point x="6" y="34" type="ascenseur" id="4" isAccessible="1"/>
+      <point x="1" y="1" type="salle" id="1" isAccessible="1"/>
+      <point x="2" y="2" type="salle" id="2" isAccessible="1"/>
+      <point x="75" y="87" type="couloir" id="5" isAccessible="1"/>
+      <point x="45" y="187" type="escalier" id="6" isAccessible="0"/>
+      <point x="1" y="2" type="porte" id="3" isAccessible="1"/>
+      <point x="75" y="87" type="porte" id="7" isAccessible="1"/>
+      <point x="75" y="87" type="toilette" id="9" isAccessible="0"/>
+      <qrcodes/>
+      <points/>
+      <arcs/>
+    </etage>
+  </batiment>
+</projet>

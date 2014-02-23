@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1046</width>
+    <height>961</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Map Creator</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../Bureau/mapcreator.png</normaloff>../Bureau/mapcreator.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QTreeWidget" name="treeWidget">
+        <column>
+         <property name="text">
+          <string>Arborescence</string>
+         </property>
+        </column>
+        <item>
+         <property name="text">
+          <string>Entité</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Bâtiment</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Etage</string>
+           </property>
+           <item>
+            <property name="text">
+             <string/>
+            </property>
+           </item>
+          </item>
+         </item>
+        </item>
+       </widget>
+      </item>
+      <item row="0" column="1" rowspan="2">
+       <widget class="GraphicsView" name="graphicsView"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QListWidget" name="listWidget"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionS_lection"/>
+   <addaction name="separator"/>
+   <addaction name="actionD_finir_chelle"/>
+   <addaction name="separator"/>
+   <addaction name="actionEntr_e_Sortie"/>
+   <addaction name="actionEscalier"/>
+   <addaction name="actionAssenceur"/>
+   <addaction name="separator"/>
+   <addaction name="actionCouloir"/>
+   <addaction name="separator"/>
+   <addaction name="actionSalle"/>
+   <addaction name="separator"/>
+   <addaction name="actionPorte"/>
+   <addaction name="separator"/>
+   <addaction name="actionLiaison"/>
+   <addaction name="separator"/>
+   <addaction name="actionQr_Code"/>
+   <addaction name="separator"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1046</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>Fichier</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <action name="actionD_finir_chelle">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Bureau/echelle.jpg</normaloff>../Bureau/echelle.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>Définir échelle</string>
+   </property>
+   <property name="toolTip">
+    <string>Définir échelle</string>
+   </property>
+  </action>
+  <action name="actionEntr_e_Sortie">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Bureau/entrée_sortie.jpg</normaloff>../Bureau/entrée_sortie.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>Entrée/Sortie</string>
+   </property>
+   <property name="toolTip">
+    <string>entree/sortie</string>
+   </property>
+  </action>
+  <action name="actionEscalier">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Bureau/escalier.png</normaloff>../Bureau/escalier.png</iconset>
+   </property>
+   <property name="text">
+    <string>Escalier</string>
+   </property>
+   <property name="toolTip">
+    <string>escalier</string>
+   </property>
+  </action>
+  <action name="actionAssenceur">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Bureau/assenceur.png</normaloff>../Bureau/assenceur.png</iconset>
+   </property>
+   <property name="text">
+    <string>Assenceur</string>
+   </property>
+   <property name="toolTip">
+    <string>assenceur</string>
+   </property>
+  </action>
+  <action name="actionCouloir">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Bureau/couloir.png</normaloff>../Bureau/couloir.png</iconset>
+   </property>
+   <property name="text">
+    <string>Couloir</string>
+   </property>
+   <property name="toolTip">
+    <string>couloir</string>
+   </property>
+  </action>
+  <action name="actionSalle">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Bureau/salle.jpg</normaloff>../Bureau/salle.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>Salle</string>
+   </property>
+   <property name="toolTip">
+    <string>salle</string>
+   </property>
+  </action>
+  <action name="actionPorte">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Bureau/porte1.png</normaloff>../Bureau/porte1.png</iconset>
+   </property>
+   <property name="text">
+    <string>Porte</string>
+   </property>
+   <property name="toolTip">
+    <string>porte</string>
+   </property>
+  </action>
+  <action name="actionLiaison">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Bureau/liaison.jpeg</normaloff>../Bureau/liaison.jpeg</iconset>
+   </property>
+   <property name="text">
+    <string>Liaison</string>
+   </property>
+   <property name="toolTip">
+    <string>liaison</string>
+   </property>
+  </action>
+  <action name="actionQr_Code">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Bureau/qrcode.jpeg</normaloff>../Bureau/qrcode.jpeg</iconset>
+   </property>
+   <property name="text">
+    <string>Qr Code</string>
+   </property>
+   <property name="toolTip">
+    <string>qrcode</string>
+   </property>
+  </action>
+  <action name="actionExtraire">
+   <property name="text">
+    <string>Extraire</string>
+   </property>
+  </action>
+  <action name="actionSauvegarder">
+   <property name="text">
+    <string>Sauvegarder</string>
+   </property>
+  </action>
+  <action name="actionCharger">
+   <property name="text">
+    <string>Charger</string>
+   </property>
+  </action>
+  <action name="actionS_lection">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Bureau/cursor.jpg</normaloff>../Bureau/cursor.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>Sélection</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>GraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>graphicsview.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
