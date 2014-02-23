@@ -51,17 +51,11 @@ public:
     void ajouterSalle(Salle* s);
     void ajouterToilette(Toilette* t);
     void ajouterEntreeSortie(EntreeSortie * e);
-
-
     void ajouterLien(Lien* lien);
-    //void supprimer lien
-    //void supprimer point -> supprimer liens correspondants
-    //setUniteEchelle
     void setDebutEchelle(Point* p);
     Point* getDebutEchelle();
     void setFinEchelle(Point* p);
     Point* getFinEchelle();
-
     std::set<Ascenseur*> getAscenseurs();
     std::set<Couloir*>getCouloirs();
     std::set<Escalier*>getEscaliers();
@@ -71,7 +65,6 @@ public:
     std::set<Toilette*> getToilettes();
     std::set<EntreeSortie*> getEntreeSortie();
     std::set<Lien*> getLiens();
-
     QString getName();
     void setName(QString name);
     QString getId();

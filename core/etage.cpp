@@ -47,9 +47,6 @@ void Etage::ajouterEntreeSortie(EntreeSortie* es){
     _entreesorties.insert(es);
 }
 
-//void supprimer lien
-//void supprimer point -> supprimer liens correspondants
-//setUniteEchelle
 void Etage::setDebutEchelle(Point* p){
     _debutEchelle=p;
 }
@@ -139,5 +136,4 @@ double Etage::getDistanceEntrePointsDeLEchelle (){
  * @brief The destructor
  */
 Etage::~Etage(){
-    ;//tout détruire
 }

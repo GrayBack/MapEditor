@@ -16,7 +16,6 @@ void NamedPoint::setName(QString name){
 bool NamedPoint::operator ==(const NamedPoint& np){
     return np._id==_id
             && np._name==_name
-            //&& np.getTypePoint()==this->getTypePoint()
             && np._x==_x
             && np._y==_y;
 }

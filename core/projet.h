@@ -5,8 +5,6 @@
 
 class Projet
 {
-    //liste des batiments
-    //liens entre batiments
     int _lastID;
     QString _name;
     std::vector<Batiment*> _batiments;

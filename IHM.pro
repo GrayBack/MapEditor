@@ -21,7 +21,6 @@ SOURCES += main.cpp\
     core/etage.cpp \
     core/point/point.cpp \
     core/lien.cpp \
-    core/parseur/parseur.cpp \
     core/point/toilette.cpp \
     core/batiment.cpp \
     core/projet.cpp \
@@ -46,7 +45,6 @@ HEADERS  += mainwindow.h \
     core/etage.h \
     core/point/point.h \
     core/lien.h \
-    parseur/parseur.h \
     core/point/toilette.h \
     core/genre.h \
     core/batiment.h \
